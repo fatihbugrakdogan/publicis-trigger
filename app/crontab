@@ -1,6 +1,0 @@
-# Use the hash sign to prefix a comment
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-# Run trigger.py every hour
-0 * * * * root python /app/trigger.py >> /var/log/cron.log 2>&1

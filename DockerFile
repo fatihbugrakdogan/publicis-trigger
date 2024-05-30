@@ -1,0 +1,13 @@
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Python script to the working directory
+COPY trigger.py .
+
+# Install necessary packages
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run the Python script in a loop every hour
+CMD ["sh", "-c", "while true; do python /app/trigger.py; sleep 3600; done"]
