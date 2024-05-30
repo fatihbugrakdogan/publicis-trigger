@@ -1,0 +1,5 @@
+[build]
+builder = "Dockerfile"
+
+[deploy]
+run = "docker run my-cron-job"
