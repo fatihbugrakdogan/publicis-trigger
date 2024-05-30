@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Set the working directory
-WORKDIR /code
+WORKDIR /app
 
 # Copy the Python script to the working directory
 COPY trigger.py .
