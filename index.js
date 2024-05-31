@@ -1,7 +1,7 @@
 import cron from "node-cron";
 import axios from "axios"; 
 
-const cronTimer = "*/5 * * * *"
+const cronTimer = "*/30 * * * *"
 
 
 
