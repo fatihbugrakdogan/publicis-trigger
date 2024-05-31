@@ -6,7 +6,7 @@ const cronTimer = "*/5 * * * *"
 
 
 cron.schedule(cronTimer, async () => {
-  const url = "https://publicisairtableintegration-production.up.railway.app/super-metrics"
+  const url = "https://publicisairtableintegration-production.up.railway.app/super_metrics"
   axios.get(url).then((response) => {
     console.log(response.data);
   }).catch((error) => {
