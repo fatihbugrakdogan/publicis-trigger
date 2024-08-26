@@ -17,7 +17,7 @@ import axios from "axios";
 //   console.log(response.url + " - " + response.status);
 // });
 
-const cronTimerForRefreshWebhook = "0 0 * * * ";
+const cronTimerForRefreshWebhook = "*/30 * * * *";
 
 cron.schedule(cronTimerForRefreshWebhook, async () => {
   const url =
