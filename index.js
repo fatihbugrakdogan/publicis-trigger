@@ -17,18 +17,18 @@ cron.schedule(cronTimer, async () => {
   console.log(response.url + " - " + response.status);
 });
 
-const cronTimerForRefreshWebhook = "0 0 * * * ";
+// const cronTimerForRefreshWebhook = "0 0 * * * ";
 
-cron.schedule(cronTimerForRefreshWebhook, async () => {
-  const url =
-    "https://publicis-api-copy-production-8ff1.up.railway.app/webhooks/refresh";
-  axios
-    .get(url)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  console.log(response.url + " - " + response.status);
-});
+// cron.schedule(cronTimerForRefreshWebhook, async () => {
+//   const url =
+//     "https://publicis-api-copy-production-8ff1.up.railway.app/webhooks/refresh";
+//   axios
+//     .get(url)
+//     .then((response) => {
+//       console.log(response.data);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+//   console.log(response.url + " - " + response.status);
+// });
