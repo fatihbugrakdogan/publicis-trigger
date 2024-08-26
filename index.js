@@ -21,7 +21,7 @@ const cronTimerForRefreshWebhook = "0 0 * * * ";
 
 cron.schedule(cronTimerForRefreshWebhook, async () => {
   const url =
-    "https://publicisairtableintegration-production.up.railway.app/webhooks/refresh";
+    "https://publicis-api-copy-production-8ff1.up.railway.app/webhooks/refresh";
   axios
     .get(url)
     .then((response) => {
