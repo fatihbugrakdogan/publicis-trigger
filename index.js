@@ -1,9 +1,9 @@
 import cron from "node-cron";
 import axios from "axios";
 
-const cronTimer = "0 0 * * *";
+// const cronTimer = "0 0 * * *";
 
-// const cronTimer = "*/15 * * * *";
+const cronTimer = "*/15 * * * *";
 
 cron.schedule(cronTimer, async () => {
   const url =
