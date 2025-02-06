@@ -29,7 +29,7 @@ cron.schedule(cronTimer, async () => {
 cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appu6VyRFftybZFdc",
-    supermetrics_table_id: "tblQ54KtQzYD3HCHG",
+    supermetrics_table_id: "tblyORbBdtQkUvbYa",
     taxonomy_values_table_id: "tblcMtn0ztG8LdU3c",
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1HXNep2eSNOrctpr-4Bd7_qsdE42Oz-59NZcKJYsioRI/edit?gid=0",
