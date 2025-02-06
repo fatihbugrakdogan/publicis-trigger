@@ -6,8 +6,7 @@ import axios from "axios";
 const cronTimer = "*/15 * * * *";
 
 cron.schedule(cronTimer, async () => {
-  const url =
-    "https://publicisairtableintegration-production.up.railway.app/super_metrics";
+  const url = "https://publicis.workino.co/super_metrics";
   axios
     .get(url)
     .then((response) => {
