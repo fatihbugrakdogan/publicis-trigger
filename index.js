@@ -8,7 +8,7 @@ const cronTimer = "*/15 * * * *";
 cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
-    supermetrics_table_id: "tbl6FSOwWYKQqRcLb",
+    supermetrics_table_id: "tblHxOIg6w9dnOl4A",
     taxonomy_values_table_id: "tbllTbzjZGP1koXoJ",
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1K2HtyoyNflu10EMp9oKQsic-D_SRzdt2g5ovUXmuqmA/edit?gid=0",
@@ -29,7 +29,7 @@ cron.schedule(cronTimer, async () => {
 cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appu6VyRFftybZFdc",
-    supermetrics_table_id: "tblyORbBdtQkUvbYa",
+    supermetrics_table_id: "tblzHv459EnVwy9Je",
     taxonomy_values_table_id: "tblcMtn0ztG8LdU3c",
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1HXNep2eSNOrctpr-4Bd7_qsdE42Oz-59NZcKJYsioRI/edit?gid=0",
