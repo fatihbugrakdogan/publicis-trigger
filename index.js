@@ -8,7 +8,7 @@ const cronTimer = "*/15 * * * *";
 cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
-    supermetrics_table_id: "tblHxOIg6w9dnOl4A",
+    supermetrics_table_id: "tbl7D1K5K0T3sQ6lS",
     taxonomy_values_table_id: "tbllTbzjZGP1koXoJ",
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1K2HtyoyNflu10EMp9oKQsic-D_SRzdt2g5ovUXmuqmA/edit?gid=0",
@@ -26,26 +26,26 @@ cron.schedule(cronTimer, async () => {
   console.log(`${url} - ${response.status}`);
 });
 
-cron.schedule(cronTimer, async () => {
-  const params = {
-    base_id: "appu6VyRFftybZFdc",
-    supermetrics_table_id: "tblzHv459EnVwy9Je",
-    taxonomy_values_table_id: "tblcMtn0ztG8LdU3c",
-    sheet_url:
-      "https://docs.google.com/spreadsheets/d/1HXNep2eSNOrctpr-4Bd7_qsdE42Oz-59NZcKJYsioRI/edit?gid=0",
-  };
+// cron.schedule(cronTimer, async () => {
+//   const params = {
+//     base_id: "appu6VyRFftybZFdc",
+//     supermetrics_table_id: "tblzHv459EnVwy9Je",
+//     taxonomy_values_table_id: "tblcMtn0ztG8LdU3c",
+//     sheet_url:
+//       "https://docs.google.com/spreadsheets/d/1HXNep2eSNOrctpr-4Bd7_qsdE42Oz-59NZcKJYsioRI/edit?gid=0",
+//   };
 
-  const url = "https://publicis.workino.co/super_metrics";
-  axios
-    .get(url, { params })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  console.log(`${url} - ${response.status}`);
-});
+//   const url = "https://publicis.workino.co/super_metrics";
+//   axios
+//     .get(url, { params })
+//     .then((response) => {
+//       console.log(response.data);
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+//   console.log(`${url} - ${response.status}`);
+// });
 
 // const cronTimerForRefreshWebhook = "0 0 * * * ";
 
