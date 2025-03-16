@@ -25,7 +25,7 @@ cron.schedule(cronTimer, async () => {
     });
   console.log(`${url} - ${response.status}`);
 });
-
+//
 cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appu6VyRFftybZFdc",
