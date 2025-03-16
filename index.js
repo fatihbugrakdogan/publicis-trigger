@@ -3,7 +3,7 @@ import axios from "axios";
 
 // const cronTimer = "0 0 * * *";
 
-const cronTimer = "*/15 * * * *";
+const cronTimer = "*/10 * * * *";
 
 cron.schedule(cronTimer, async () => {
   const params = {
