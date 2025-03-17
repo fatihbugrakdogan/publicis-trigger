@@ -3,9 +3,13 @@ import axios from "axios";
 
 // const cronTimer = "0 0 * * *";
 
-const cronTimer = "*/10 * * * *";
+// Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
+const cronTimerFirst = "30 * * * *";
 
-cron.schedule(cronTimer, async () => {
+// Schedule for on the hour, every hour (12:00, 13:00, etc.)
+const cronTimerSecond = "0 * * * *";
+
+cron.schedule(cronTimerFirst, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
     supermetrics_table_id: "tbl7D1K5K0T3sQ6lS",
@@ -25,8 +29,8 @@ cron.schedule(cronTimer, async () => {
     });
   console.log(`${url} - ${response.status}`);
 });
-//
-cron.schedule(cronTimer, async () => {
+
+cron.schedule(cronTimerSecond, async () => {
   const params = {
     base_id: "appu6VyRFftybZFdc",
     supermetrics_table_id: "tblpWruYgLJeTfT3q",
