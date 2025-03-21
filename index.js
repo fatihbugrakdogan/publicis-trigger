@@ -14,6 +14,7 @@ cron.schedule(cronTimerFirst, async () => {
     base_id: "appa8Xou2kAPyvQhp",
     supermetrics_table_id: "tbl7D1K5K0T3sQ6lS",
     taxonomy_values_table_id: "tbllTbzjZGP1koXoJ",
+    campaign_metrics_table_id: "tbl8578qdxb1oILUq",
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1K2HtyoyNflu10EMp9oKQsic-D_SRzdt2g5ovUXmuqmA/edit?gid=0",
   };
@@ -35,6 +36,8 @@ cron.schedule(cronTimerSecond, async () => {
     base_id: "appu6VyRFftybZFdc",
     supermetrics_table_id: "tblpWruYgLJeTfT3q",
     taxonomy_values_table_id: "tblcMtn0ztG8LdU3c",
+    campaign_metrics_table_id: "tblKV6LEhWHp2r10L",
+
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1HXNep2eSNOrctpr-4Bd7_qsdE42Oz-59NZcKJYsioRI/edit?gid=0",
   };
