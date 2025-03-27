@@ -4,13 +4,13 @@ import axios from "axios";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimerFirst = "20 * * * *";
+const cronTimerFirst = "25 * * * *";
 
 // Schedule for on the hour, every hour (12:00, 13:00, etc.)
-const cronTimerSecond = "0 * * * *";
+const cronTimerSecond = "45 * * * *";
 
 // Schedule for 20 minutes past every hour (12:20, 13:20, etc.)
-const cronTimerThird = "40 * * * *";
+const cronTimerThird = "5 * * * *";
 
 cron.schedule(cronTimerFirst, async () => {
   const params = {
