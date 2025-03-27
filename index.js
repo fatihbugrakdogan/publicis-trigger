@@ -4,13 +4,13 @@ import axios from "axios";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimerFirst = "25 * * * *";
+const cronTimerFirst = "0 * * * *";
 
 // Schedule for on the hour, every hour (12:00, 13:00, etc.)
-const cronTimerSecond = "45 * * * *";
+const cronTimerSecond = "25 * * * *";
 
 // Schedule for 20 minutes past every hour (12:20, 13:20, etc.)
-const cronTimerThird = "10 * * * *";
+const cronTimerThird = "45 * * * *";
 
 cron.schedule(cronTimerFirst, async () => {
   const params = {
@@ -63,7 +63,6 @@ cron.schedule(cronTimerThird, async () => {
     supermetrics_table_id: "tblOKhAKhlO1vawrp",
     taxonomy_values_table_id: "tbl7L98AugGdUMAUr",
     campaign_metrics_table_id: "tblBuCVOFggplKq2h",
-
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1LUnVFoM9_ZDIv2j47sbrCm0O60AX35kjmVtjt_lIu-M/edit?gid=0",
   };
