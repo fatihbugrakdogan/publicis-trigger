@@ -10,7 +10,7 @@ const cronTimerFirst = "25 * * * *";
 const cronTimerSecond = "45 * * * *";
 
 // Schedule for 20 minutes past every hour (12:20, 13:20, etc.)
-const cronTimerThird = "5 * * * *";
+const cronTimerThird = "10 * * * *";
 
 cron.schedule(cronTimerFirst, async () => {
   const params = {
