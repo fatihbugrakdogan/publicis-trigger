@@ -4,13 +4,16 @@ import axios from "axios";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimerFirst = "0 * * * *";
+const cronTimerFirst = "15 * * * *";
 
 // Schedule for on the hour, every hour (12:00, 13:00, etc.)
-const cronTimerSecond = "25 * * * *";
+const cronTimerSecond = "30 * * * *";
 
 // Schedule for 20 minutes past every hour (12:20, 13:20, etc.)
 const cronTimerThird = "45 * * * *";
+
+// Schedule for 60 minutes past every hour (12:50, 13:50, etc.)
+const cronTimerFourth = "0 * * * *";
 
 cron.schedule(cronTimerFirst, async () => {
   const params = {
@@ -78,6 +81,30 @@ cron.schedule(cronTimerThird, async () => {
     });
   console.log(`${url} - ${response.status}`);
 });
+
+cron.schedule(cronTimerFourth, async () => {
+  const params = {
+    base_id: "app0l5cLckTzOaMoU",
+    supermetrics_table_id: "tblO6aO9JXYxWfOa1",
+    taxonomy_values_table_id: "tblEW45nyKogmPfkS",
+    campaign_metrics_table_id: "tblr5K6Tkzgr6bMds",
+    sheet_url:
+      "https://docs.google.com/spreadsheets/d/1uUaUa0O_zlAnAwOiwb9jO7ngM77aEFnQqHxvfWczLvg",
+  };
+
+  const url = "https://publicis.workino.co/super_metrics";
+  axios
+    .get(url, { params })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  console.log(`${url} - ${response.status}`);
+});
+
+// const cronTimerForRefreshWebhook = "0 0 * * * ";
 // const cronTimerForRefreshWebhook = "0 0 * * * ";
 
 // cron.schedule(cronTimerForRefreshWebhook, async () => {
