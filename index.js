@@ -15,6 +15,8 @@ const cronTimerThird = "45 * * * *";
 // Schedule for 60 minutes past every hour (12:50, 13:50, etc.)
 const cronTimerFourth = "0 * * * *";
 
+const cronTimerFifth = "5 * * * *";
+
 cron.schedule(cronTimerFirst, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
@@ -90,6 +92,28 @@ cron.schedule(cronTimerFourth, async () => {
     campaign_metrics_table_id: "tblr5K6Tkzgr6bMds",
     sheet_url:
       "https://docs.google.com/spreadsheets/d/1uUaUa0O_zlAnAwOiwb9jO7ngM77aEFnQqHxvfWczLvg",
+  };
+
+  const url = "https://publicis.workino.co/super_metrics";
+  axios
+    .get(url, { params })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  console.log(`${url} - ${response.status}`);
+});
+
+cron.schedule(cronTimerFifth, async () => {
+  const params = {
+    base_id: "appu7C1c4gbJFjlw7",
+    supermetrics_table_id: "tblyvqO7TcCOiSMeI",
+    taxonomy_values_table_id: "tblISSu4hCpqezpqL",
+    campaign_metrics_table_id: "tbl9KL9G1O2cjPewl",
+    sheet_url:
+      "https://docs.google.com/spreadsheets/d/1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0",
   };
 
   const url = "https://publicis.workino.co/super_metrics";
