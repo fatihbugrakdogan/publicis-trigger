@@ -4,22 +4,12 @@ import axios from "axios";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimerFirst = "15 * * * *";
+const cronTimer = "35 * * * *";
 
-// Schedule for on the hour, every hour (12:00, 13:00, etc.)
-const cronTimerSecond = "15 * * * *";
-
-// Schedule for 20 minutes past every hour (12:20, 13:20, etc.)
-const cronTimerThird = "15 * * * *";
-
-// Schedule for 60 minutes past every hour (12:50, 13:50, etc.)
-const cronTimerFourth = "15 * * * *";
-
-const cronTimerFifth = "15 * * * *";
 
 
 // Neom Base
-cron.schedule(cronTimerFirst, async () => {
+cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
     supermetrics_table_id: "tbl7D1K5K0T3sQ6lS",
@@ -41,7 +31,7 @@ cron.schedule(cronTimerFirst, async () => {
   console.log(`${url} - ${response.status}`);
 });
 /// Aramco Base
-cron.schedule(cronTimerSecond, async () => {
+cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appu6VyRFftybZFdc",
     supermetrics_table_id: "tblpWruYgLJeTfT3q",
@@ -65,7 +55,7 @@ cron.schedule(cronTimerSecond, async () => {
 });
 
 /// PG Base
-cron.schedule(cronTimerThird, async () => {
+cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appANXR8k6pZ9Xh4i",
     supermetrics_table_id: "tblOKhAKhlO1vawrp",
@@ -88,7 +78,7 @@ cron.schedule(cronTimerThird, async () => {
 });
 
 // Nestle Base
-cron.schedule(cronTimerFourth, async () => {
+cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "app0l5cLckTzOaMoU",
     supermetrics_table_id: "tblO6aO9JXYxWfOa1",
@@ -111,7 +101,7 @@ cron.schedule(cronTimerFourth, async () => {
 });
 
 // Visa Base
-cron.schedule(cronTimerFifth, async () => {
+cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appu7C1c4gbJFjlw7",
     supermetrics_table_id: "tblyvqO7TcCOiSMeI",
