@@ -7,16 +7,18 @@ import axios from "axios";
 const cronTimerFirst = "15 * * * *";
 
 // Schedule for on the hour, every hour (12:00, 13:00, etc.)
-const cronTimerSecond = "30 * * * *";
+const cronTimerSecond = "15 * * * *";
 
 // Schedule for 20 minutes past every hour (12:20, 13:20, etc.)
-const cronTimerThird = "45 * * * *";
+const cronTimerThird = "15 * * * *";
 
 // Schedule for 60 minutes past every hour (12:50, 13:50, etc.)
-const cronTimerFourth = "0 * * * *";
+const cronTimerFourth = "15 * * * *";
 
-const cronTimerFifth = "5 * * * *";
+const cronTimerFifth = "15 * * * *";
 
+
+// Neom Base
 cron.schedule(cronTimerFirst, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
@@ -38,7 +40,7 @@ cron.schedule(cronTimerFirst, async () => {
     });
   console.log(`${url} - ${response.status}`);
 });
-
+/// Aramco Base
 cron.schedule(cronTimerSecond, async () => {
   const params = {
     base_id: "appu6VyRFftybZFdc",
@@ -50,7 +52,7 @@ cron.schedule(cronTimerSecond, async () => {
       "https://docs.google.com/spreadsheets/d/1HXNep2eSNOrctpr-4Bd7_qsdE42Oz-59NZcKJYsioRI/edit?gid=0",
   };
 
-  const url = "https://publicis.workino.co/super_metrics";
+  const url = "https://publicis-api-aramco-base-production.up.railway.app/super_metrics";
   axios
     .get(url, { params })
     .then((response) => {
@@ -62,6 +64,7 @@ cron.schedule(cronTimerSecond, async () => {
   console.log(`${url} - ${response.status}`);
 });
 
+/// PG Base
 cron.schedule(cronTimerThird, async () => {
   const params = {
     base_id: "appANXR8k6pZ9Xh4i",
@@ -72,7 +75,7 @@ cron.schedule(cronTimerThird, async () => {
       "https://docs.google.com/spreadsheets/d/1LUnVFoM9_ZDIv2j47sbrCm0O60AX35kjmVtjt_lIu-M/edit?gid=0",
   };
 
-  const url = "https://publicis.workino.co/super_metrics";
+  const url = "https://publicis-pandg-base-production.up.railway.app/super_metrics";
   axios
     .get(url, { params })
     .then((response) => {
@@ -84,6 +87,7 @@ cron.schedule(cronTimerThird, async () => {
   console.log(`${url} - ${response.status}`);
 });
 
+// Nestle Base
 cron.schedule(cronTimerFourth, async () => {
   const params = {
     base_id: "app0l5cLckTzOaMoU",
@@ -94,7 +98,7 @@ cron.schedule(cronTimerFourth, async () => {
       "https://docs.google.com/spreadsheets/d/1uUaUa0O_zlAnAwOiwb9jO7ngM77aEFnQqHxvfWczLvg",
   };
 
-  const url = "https://publicis.workino.co/super_metrics";
+  const url = "https://publicis-nestle-base-production.up.railway.app/super_metrics";
   axios
     .get(url, { params })
     .then((response) => {
@@ -106,6 +110,7 @@ cron.schedule(cronTimerFourth, async () => {
   console.log(`${url} - ${response.status}`);
 });
 
+// Visa Base
 cron.schedule(cronTimerFifth, async () => {
   const params = {
     base_id: "appu7C1c4gbJFjlw7",
@@ -116,7 +121,7 @@ cron.schedule(cronTimerFifth, async () => {
       "https://docs.google.com/spreadsheets/d/1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0",
   };
 
-  const url = "https://publicis.workino.co/super_metrics";
+  const url = "https://publicis-visa-base-production.up.railway.app/super_metrics";
   axios
     .get(url, { params })
     .then((response) => {
