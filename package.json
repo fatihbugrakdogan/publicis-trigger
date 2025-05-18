@@ -1,21 +1,22 @@
 {
-  "name": "cronjob",
+  "name": "publicis-trigger",
   "version": "1.0.0",
   "description": "a basic cron job scheduler",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node index.js",
+    "dev": "node index.js"
   },
   "keywords": [],
   "author": "Rajdeep Ghosh",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.7.2",
-    "dotenv": "^16.5.0",
-    "google-auth-library": "^9.15.1",
-    "googleapis": "^148.0.0",
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "google-auth-library": "^9.6.3",
+    "googleapis": "^133.0.0",
     "node-cron": "^3.0.3"
   },
   "devDependencies": {

@@ -2,15 +2,28 @@ import cron from "node-cron";
 import axios from "axios";
 import { syncLinkedInSheetToMain } from "./sheetsSync.js";
 import dotenv from 'dotenv';
+import express from 'express';
 
 // Load environment variables
 dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
 const cronTimer = "15 * * * *";
-
 
 /// Input Schema
 
