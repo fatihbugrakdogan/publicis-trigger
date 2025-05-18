@@ -1,6 +1,10 @@
 import cron from "node-cron";
 import axios from "axios";
 import { syncLinkedInSheetToMain } from "./sheetsSync.js";
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // const cronTimer = "0 0 * * *";
 
@@ -122,8 +126,8 @@ cron.schedule(cronTimer, async () => {
   try {
     // First sync the LinkedIn sheet
     await syncLinkedInSheetToMain(
-      '1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw',
-      '1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0'
+      process.env.LINKEDIN_SHEET_ID,
+      process.env.TARGET_SHEET_ID
     );
     
     // Then proceed with the regular super metrics sync
