@@ -84,13 +84,26 @@ export async function syncLinkedInSheetToMain(sourceSheetId, targetSheetId) {
   }
 }
 
+// Helper function to extract sheet ID from URL
+export function extractSheetIdFromUrl(url) {
+  const match = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+  return match ? match[1] : null;
+}
+
 // Test the function
 const testSync = async () => {
   try {
-    const result = await syncLinkedInSheetToMain(
-      '1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw',
-      '1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0'
-    );
+    const sourceUrl = 'https://docs.google.com/spreadsheets/d/1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw/edit';
+    const targetUrl = 'https://docs.google.com/spreadsheets/d/1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0/edit';
+    
+    const sourceSheetId = extractSheetIdFromUrl(sourceUrl);
+    const targetSheetId = extractSheetIdFromUrl(targetUrl);
+    
+    if (!sourceSheetId || !targetSheetId) {
+      throw new Error('Invalid sheet URL');
+    }
+
+    const result = await syncLinkedInSheetToMain(sourceSheetId, targetSheetId);
     console.log('Sync result:', result);
   } catch (error) {
     console.error('Sync error:', error);

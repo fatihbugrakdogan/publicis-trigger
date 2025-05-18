@@ -1,6 +1,7 @@
 import cron from "node-cron";
 import axios from "axios";
 import { syncLinkedInSheetToMain } from "./sheetsSync.js";
+import { extractSheetIdFromUrl } from "./sheetsSync.js";
 
 // const cronTimer = "0 0 * * *";
 
@@ -120,11 +121,19 @@ cron.schedule(cronTimer, async () => {
   const url = "https://publicis-visa-base-production.up.railway.app/super_metrics";
   
   try {
+    // Extract sheet IDs from URLs
+    const sourceSheetUrl = 'https://docs.google.com/spreadsheets/d/1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw/edit';
+    const targetSheetUrl = params.sheet_url;
+    
+    const sourceSheetId = extractSheetIdFromUrl(sourceSheetUrl);
+    const targetSheetId = extractSheetIdFromUrl(targetSheetUrl);
+    
+    if (!sourceSheetId || !targetSheetId) {
+      throw new Error('Invalid sheet URL');
+    }
+
     // First sync the LinkedIn sheet
-    await syncLinkedInSheetToMain(
-      '1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw',
-      '1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0'
-    );
+    await syncLinkedInSheetToMain(sourceSheetId, targetSheetId);
     
     // Then proceed with the regular super metrics sync
     const response = await axios.get(url, { params });
