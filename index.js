@@ -1,29 +1,12 @@
 import cron from "node-cron";
 import axios from "axios";
 import { syncLinkedInSheetToMain } from "./sheetsSync.js";
-import dotenv from 'dotenv';
-import express from 'express';
-
-// Load environment variables
-dotenv.config();
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-// Health check endpoint
-app.get('/', (req, res) => {
-  res.status(200).json({ status: 'ok' });
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
 
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
 const cronTimer = "15 * * * *";
+
 
 /// Input Schema
 
@@ -139,8 +122,8 @@ cron.schedule(cronTimer, async () => {
   try {
     // First sync the LinkedIn sheet
     await syncLinkedInSheetToMain(
-      process.env.LINKEDIN_SHEET_ID,
-      process.env.TARGET_SHEET_ID
+      '1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw',
+      '1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0'
     );
     
     // Then proceed with the regular super metrics sync
