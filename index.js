@@ -1,5 +1,6 @@
 import cron from "node-cron";
 import axios from "axios";
+import { syncLinkedInSheetToMain } from "./sheetsSync.js";
 
 // const cronTimer = "0 0 * * *";
 
@@ -7,6 +8,11 @@ import axios from "axios";
 const cronTimer = "15 * * * *";
 
 
+/// Input Schema
+
+/// supermetrics_table_id Airtable Adset Metrics Table
+/// taxonomy_values_table_id Airtable Taxonomy Values Table
+/// campaign_metrics_table_id Airtable Campaign Metrics Table
 
 // Neom Base
 cron.schedule(cronTimer, async () => {
@@ -112,30 +118,20 @@ cron.schedule(cronTimer, async () => {
   };
 
   const url = "https://publicis-visa-base-production.up.railway.app/super_metrics";
-  axios
-    .get(url, { params })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  console.log(`${url} - ${response.status}`);
+  
+  try {
+    // First sync the LinkedIn sheet
+    await syncLinkedInSheetToMain(
+      '1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw',
+      '1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0'
+    );
+    
+    // Then proceed with the regular super metrics sync
+    const response = await axios.get(url, { params });
+    console.log(response.data);
+    console.log(`${url} - ${response.status}`);
+  } catch (error) {
+    console.error('Error in Visa base sync:', error);
+  }
 });
 
-// const cronTimerForRefreshWebhook = "0 0 * * * ";
-// const cronTimerForRefreshWebhook = "0 0 * * * ";
-
-// cron.schedule(cronTimerForRefreshWebhook, async () => {
-//   const url =
-//     "https://publicis-api-copy-production-8ff1.up.railway.app/webhooks/refresh";
-//   axios
-//     .get(url)
-//     .then((response) => {
-//       console.log(response.data);
-//     })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-//   console.log(response.url + " - " + response.status);
-// });
