@@ -19,7 +19,7 @@ const cronTimer = "15 * * * *";
 cron.schedule(cronTimer, async () => {
   const params = {
     base_id: "appa8Xou2kAPyvQhp",
-    supermetrics_table_id: "tbl7D1K5K0T3sQ6lS",
+    supermetrics_table_id: "tblq3JnWtjAEcpH2c",
     taxonomy_values_table_id: "tbllTbzjZGP1koXoJ",
     campaign_metrics_table_id: "tbl8578qdxb1oILUq",
     sheet_url:
