@@ -1,7 +1,6 @@
 import cron from "node-cron";
 import axios from "axios";
-import { syncLinkedInSheetToMain } from "./sheetsSync.js";
-import { extractSheetIdFromUrl } from "./sheetsSync.js";
+import { syncSheet } from "./sheetsSync.js";
 
 // const cronTimer = "0 0 * * *";
 
@@ -127,7 +126,7 @@ cron.schedule(cronTimer, async () => {
     
 
     // First sync the LinkedIn sheet
-    await syncLinkedInSheetToMain(sourceSheetUrl, targetSheetUrl, "LinkedIn");
+    await syncSheet(sourceSheetUrl, targetSheetUrl, "LinkedIn");
     
     // Then proceed with the regular super metrics sync
     const response = await axios.get(url, { params });
@@ -155,8 +154,8 @@ cron.schedule(cronTimer, async () => {
     const targetSheetUrl = params.sheet_url;
     const sourceSheetUrl = 'https://docs.google.com/spreadsheets/d/18FQ4Jy82iUbCDDCiZgU7rOBmhLk9GEd1yI8fD4kT0Dw';
 
-    await syncLinkedInSheetToMain(sourceSheetUrl, targetSheetUrl, "DV360");
-    await syncLinkedInSheetToMain(sourceSheetUrl, targetSheetUrl, "Google Ads");
+    await syncSheet(sourceSheetUrl, targetSheetUrl, "DV360");
+    await syncSheet(sourceSheetUrl, targetSheetUrl, "Google Ads");
 
     const response = await axios.get(url, { params });
     console.log(response.data);
