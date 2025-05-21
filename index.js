@@ -6,7 +6,7 @@ import { extractSheetIdFromUrl } from "./sheetsSync.js";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimer = "15 * * * *";
+const cronTimer = "35 * * * *";
 
 
 /// Input Schema
