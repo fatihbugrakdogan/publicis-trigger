@@ -125,15 +125,9 @@ cron.schedule(cronTimer, async () => {
     const sourceSheetUrl = 'https://docs.google.com/spreadsheets/d/1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw/edit';
     const targetSheetUrl = params.sheet_url;
     
-    const sourceSheetId = extractSheetIdFromUrl(sourceSheetUrl);
-    const targetSheetId = extractSheetIdFromUrl(targetSheetUrl);
-    
-    if (!sourceSheetId || !targetSheetId) {
-      throw new Error('Invalid sheet URL');
-    }
 
     // First sync the LinkedIn sheet
-    await syncLinkedInSheetToMain(sourceSheetId, targetSheetId);
+    await syncLinkedInSheetToMain(sourceSheetUrl, targetSheetUrl, "LinkedIn");
     
     // Then proceed with the regular super metrics sync
     const response = await axios.get(url, { params });
@@ -144,3 +138,35 @@ cron.schedule(cronTimer, async () => {
   }
 });
 
+
+cron.schedule(cronTimer, async () => {
+  try {
+    const params = {
+      base_id: "app4Asb8xCpNzeIUL",
+      supermetrics_table_id: "tblnAx5RFBpywD9f1",
+      taxonomy_values_table_id: "tblbhz5f2H4XAgXov",
+      campaign_metrics_table_id: "tblvdHChP89sT8kLJ",
+      sheet_url:
+        "https://docs.google.com/spreadsheets/d/1oRf7W_r5-zZbt0CqNCb8S6vzfKzsX5tDuNXSkYSn5Bo",
+    };
+
+    const url = "https://publicis-api-accor-base-production.up.railway.app/super_metrics";
+
+    const targetSheetUrl = params.sheet_url;
+    const sourceSheetUrl = 'https://docs.google.com/spreadsheets/d/18FQ4Jy82iUbCDDCiZgU7rOBmhLk9GEd1yI8fD4kT0Dw';
+
+    await syncLinkedInSheetToMain(sourceSheetUrl, targetSheetUrl, "DV360");
+    await syncLinkedInSheetToMain(sourceSheetUrl, targetSheetUrl, "Google Ads");
+
+    const response = await axios.get(url, { params });
+    console.log(response.data);
+    console.log(`${url} - ${response.status}`);
+  } catch (error) {
+    console.error('Error in Accor base sync:', error);
+  }
+});
+
+
+
+
+// https://publicis-api-accor-base-production.up.railway.app/

@@ -1,8 +1,16 @@
 import { google } from 'googleapis';
 import { JWT } from 'google-auth-library';
 
-export async function syncLinkedInSheetToMain(sourceSheetId, targetSheetId) {
+export async function syncSheet(sourceSheetUrl, targetSheetUrl, sheetName) {
   try {
+    // Extract sheet IDs from URLs
+    const sourceSheetId = extractSheetIdFromUrl(sourceSheetUrl);
+    const targetSheetId = extractSheetIdFromUrl(targetSheetUrl);
+
+    if (!sourceSheetId || !targetSheetId) {
+      throw new Error('Invalid sheet URL');
+    }
+
     // Google Sheets API setup
     const auth = new JWT({
       email: "neom-service-account@neom-airtable-integration.iam.gserviceaccount.com",
@@ -12,12 +20,12 @@ export async function syncLinkedInSheetToMain(sourceSheetId, targetSheetId) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // Check if LinkedIn sheet exists and delete it if it does
+    // Check if sheet exists in target and delete it if it does
     const spreadsheet = await sheets.spreadsheets.get({
       spreadsheetId: targetSheetId,
     });
 
-    const existingSheet = spreadsheet.data.sheets.find(sheet => sheet.properties.title === 'LinkedIn');
+    const existingSheet = spreadsheet.data.sheets.find(sheet => sheet.properties.title === sheetName);
     
     if (existingSheet) {
       await sheets.spreadsheets.batchUpdate({
@@ -32,44 +40,44 @@ export async function syncLinkedInSheetToMain(sourceSheetId, targetSheetId) {
       });
     }
 
-    // Create new sheet in main spreadsheet
+    // Create new sheet in target spreadsheet
     const createSheetResponse = await sheets.spreadsheets.batchUpdate({
       spreadsheetId: targetSheetId,
       resource: {
         requests: [{
           addSheet: {
             properties: {
-              title: 'LinkedIn'
+              title: sheetName
             }
           }
         }]
       }
     });
 
-    // Read data from LinkedIn sheet
-    const linkedinResponse = await sheets.spreadsheets.values.get({
+    // Read data from source sheet
+    const sourceResponse = await sheets.spreadsheets.values.get({
       spreadsheetId: sourceSheetId,
-      range: 'A:Z', // Adjust range as needed
+      range: `${sheetName}!A:Z`, // Adjust range as needed
     });
 
-    const linkedinData = linkedinResponse.data.values;
+    const sourceData = sourceResponse.data.values;
 
     // Write data to new sheet
     const updateResponse = await sheets.spreadsheets.values.update({
       spreadsheetId: targetSheetId,
-      range: 'LinkedIn!A1',
+      range: `${sheetName}!A1`,
       valueInputOption: 'RAW',
       resource: {
-        values: linkedinData,
+        values: sourceData,
       },
     });
 
-    console.log('Data synced successfully to new sheet: LinkedIn');
+    console.log(`Data synced successfully to new sheet: ${sheetName}`);
     return {
       success: true,
       message: 'Data synced successfully to new sheet',
       data: {
-        sheetName: 'LinkedIn',
+        sheetName: sheetName,
         updateResponse: updateResponse.data
       }
     };
@@ -93,17 +101,11 @@ export function extractSheetIdFromUrl(url) {
 // Test the function
 const testSync = async () => {
   try {
-    const sourceUrl = 'https://docs.google.com/spreadsheets/d/1p1V9i6VeyvKT9kIsA_Y6aFE5_kz3XhN2-D8y59a8adw/edit';
-    const targetUrl = 'https://docs.google.com/spreadsheets/d/1dKPY8vwGdNNP1pVLd3r29fSn2_vB8yIWZI8TK08Sgv0/edit';
+    const sourceUrl = 'https://docs.google.com/spreadsheets/d/18FQ4Jy82iUbCDDCiZgU7rOBmhLk9GEd1yI8fD4kT0Dw';
+    const targetUrl = 'https://docs.google.com/spreadsheets/d/1oRf7W_r5-zZbt0CqNCb8S6vzfKzsX5tDuNXSkYSn5Bo';
+    const sheetName = 'DV360';
     
-    const sourceSheetId = extractSheetIdFromUrl(sourceUrl);
-    const targetSheetId = extractSheetIdFromUrl(targetUrl);
-    
-    if (!sourceSheetId || !targetSheetId) {
-      throw new Error('Invalid sheet URL');
-    }
-
-    const result = await syncLinkedInSheetToMain(sourceSheetId, targetSheetId);
+    const result = await syncSheet(sourceUrl, targetUrl, sheetName);
     console.log('Sync result:', result);
   } catch (error) {
     console.error('Sync error:', error);
@@ -114,3 +116,4 @@ const testSync = async () => {
 if (import.meta.url === `file://${process.argv[1]}`) {
   testSync();
 } 
+
