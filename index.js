@@ -5,7 +5,7 @@ import { syncSheet } from "./sheetsSync.js";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimer = "10 * * * *";
+const cronTimer = "36 * * * *";
 
 
 /// Input Schema
@@ -137,7 +137,7 @@ cron.schedule(cronTimer, async () => {
   }
 });
 
-
+// Accor Base
 cron.schedule(cronTimer, async () => {
   try {
     const params = {
