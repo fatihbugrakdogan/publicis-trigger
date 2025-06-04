@@ -5,7 +5,7 @@ import { syncSheet } from "./sheetsSync.js";
 // const cronTimer = "0 0 * * *";
 
 // Schedule for 30 minutes past every hour (12:30, 13:30, etc.)
-const cronTimer = "36 * * * *";
+const cronTimer = "10 * * * *";
 
 
 /// Input Schema
